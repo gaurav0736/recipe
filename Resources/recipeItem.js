@@ -8,23 +8,35 @@ import {
   } from 'react-native';
 
 import { Icon } from 'react-native-elements';
+import RecipeDetail from './recipeDetail';
 
-export default class BookcaseItem extends Component {
+
+
+export default class RecipeItem extends Component {
+
+  _onEditBook = () => {
+    let id = this.props.id;
+    this.props.navigation.navigate('RecipeDetail', {id: id});
+
+  }
+
     render() {
         return(
-          <View style={styles.rowContainer}>
-            <Image source={{uri: this.props.thumbnail}}
-            style={styles.thumbnail}
-            resizeMode="contain" />
-            <View style={styles.rowText}>
-              <Text style={styles.title} numberOfLines={2} ellipsizeMode ={'tail'}>
-                {this.props.title}
-              </Text>
-              <Text style={styles.author} numberOfLines={1} ellipsizeMode ={'tail'}>
-                {this.props.author}
-              </Text>
-            </View>
+          <TouchableOpacity onPress={this._onEditBook}>
+        <View style={styles.rowContainer}>
+          <Image source={{uri: this.props.thumbnail}}
+          style={styles.thumbnail}
+          resizeMode="contain" />
+          <View style={styles.rowText}>
+            <Text style={styles.title} numberOfLines={2} ellipsizeMode ={'tail'}>
+              {this.props.title}
+            </Text>
+            <Text style={styles.author} numberOfLines={1} ellipsizeMode ={'tail'}>
+              {this.props.author}
+            </Text>
           </View>
+        </View>
+      </TouchableOpacity>
         );
     }
 }
@@ -59,8 +71,6 @@ const styles = StyleSheet.create({
   },
   thumbnail: {
     flex: 1,
-    height: undefined,
-    width: undefined
   },
   rowText: {
     flex: 4,

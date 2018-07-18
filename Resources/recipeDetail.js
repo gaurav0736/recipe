@@ -5,7 +5,7 @@ import {
   View
 } from 'react-native';
 
-export default class Boook extends Component {
+export default class RecipeDetail extends Component {
   render() {
     return (
       <View style={styles.container}>

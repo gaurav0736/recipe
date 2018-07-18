@@ -7,7 +7,9 @@ import {
   View
 } from 'react-native';
 
-import BookcaseItem from './recipeItem';
+import RecipeItem from './recipeItem';
+import RecipeDetail from './recipeDetail';
+
 
 export default class Boookcase extends Component {
   constructor(props) {
@@ -37,7 +39,7 @@ export default class Boookcase extends Component {
   }
 
   _renderItem = ({item}) => (
-    <BookcaseItem
+    <RecipeItem
       id={item.id}
       title={item.title}
       author={item.author}
@@ -45,7 +47,7 @@ export default class Boookcase extends Component {
     />
   );
 
-  _keyExtractor = (item, index) => item.id;
+  _keyExtractor = (item, index) =>index.toString();
 
   render() {
     return (

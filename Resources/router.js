@@ -5,6 +5,7 @@ import { Icon } from 'react-native-elements';
 
 import Recipe from './recipes';
 import AddRecipe from './recipeAdd';
+import RecipeDetail from './recipeDetail';
 
 
 export const Tabs = createBottomTabNavigator({
@@ -12,8 +13,7 @@ export const Tabs = createBottomTabNavigator({
     screen: Recipe,
     navigationOptions: {
       tabBarLabel: 'Home',
-    tabBarIcon: ({ tintColor }) => <Icon name="list" type="entypo" size={28} color={tintColor} />
-   
+    tabBarIcon: ({ tintColor }) => <Icon name="list" type="entypo" size={28} color={tintColor} />   
     },
   },
   'Add Recipe': {	
@@ -25,9 +25,33 @@ export const Tabs = createBottomTabNavigator({
   },
 });
 
+export const BookcaseStack = createStackNavigator({
+  Recipe: {
+    screen: Recipe,
+    navigationOptions: ({navigation}) => ({
+      header: null,
+    }),
+  },
+  RecipeDetail: {
+    screen: RecipeDetail,
+    navigationOptions: ({navigation}) => ({
+      header: null,
+      tabBarVisible: false,
+      gesturesEnabled: false
+    }),
+  },
+});
+
+
 export const createRootNavigator = () => {
   return createStackNavigator(
     {
+      BookcaseStack: {
+        screen: BookcaseStack,
+        navigationOptions: {
+          gesturesEnabled: false
+        }
+      },
       Tabs: {
         screen: Tabs,
         navigationOptions: {
@@ -35,5 +59,9 @@ export const createRootNavigator = () => {
         }
       }
     },
+    {
+      headerMode: "none",
+      mode: "modal"
+    }
   );
 };

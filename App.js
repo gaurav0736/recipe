@@ -6,11 +6,13 @@ import {
 } from 'react-navigation';
 
 
-import { Tabs , createRootNavigator} from './Resources/router';
+import { Tabs , createRootNavigator, BookcaseStack} from './Resources/router';
 
 class App extends Component {
+
   render() {
-    return <Tabs />;
+    return <Tabs />
+    <BookcaseStack />;
     
   }
 }
